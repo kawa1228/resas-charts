@@ -1,5 +1,7 @@
-# react_sample
+# resas-charts
 
+React + RESAS API + Highcharts
 ```
-$yarn run dev
-```# resas-charts
+$ yarn install
+$ yarn run dev
+```
