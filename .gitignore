@@ -1,4 +1,4 @@
 .node-version
 /node_modules
 yarn-error.log
-myApiKey.js
+/src/myApiKey.js
