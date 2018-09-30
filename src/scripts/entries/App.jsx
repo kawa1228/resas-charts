@@ -9,7 +9,7 @@ class App extends React.Component {
     super()
     this.state = {
       prefectures: [],
-      series: [],
+      population: [],
       flag: false
     }
     this.getRegionalData(11)
@@ -27,12 +27,12 @@ class App extends React.Component {
     axios.get(`https://opendata.resas-portal.go.jp/api/v1/population/sum/perYear?cityCode=-&prefCode=${index}`,
       { headers: { 'X-API-KEY': apiKey } })
       .then(res => {
-        let population = []
+        let populations = []
         res.data.result.line.data.map(val => {
-          population.push(val.value)
+          populations.push(val.value)
         })
         this.setState({
-          series: population
+          population: populations
         })
       })
   }
@@ -52,7 +52,7 @@ class App extends React.Component {
         text: '都道府県別人口構成'
       },
       series: [{
-        data: this.state.series,
+        data: this.state.population,
         pointStart: 1965,
       }]
     }
