@@ -1,0 +1,10 @@
+// 画面読み込み時#appを隠してインスタンスが生成されるとv-cloak属性が外れてフェードインしながら表示
+[v-cloak]
+  display: none
+@keyframes cloak-in
+  0%
+    opacity: 0
+#app #long #list
+  animation: cloak-in 1s
+#app #long #list[v-cloak]
+  opacity: 0
