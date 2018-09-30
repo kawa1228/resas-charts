@@ -7,7 +7,7 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      prefectures: {},
+      prefectures: [],
       tasks: [],
       flag: false
     }
@@ -26,18 +26,24 @@ class App extends React.Component {
     axios.get(`https://opendata.resas-portal.go.jp/api/v1/population/sum/perYear?cityCode=-&prefCode=${index}`,
       { headers: { 'X-API-KEY': apiKey } })
       .then(res =>
-        console.log(res.data.result.line.data)
+        console.log(`データ：${res.data.result.line.data}`)
       )
   }
+  renderItems() {
+    return this.state.prefectures.map(val => {
+      return (
+        <div>
+          <input type="checkbox" />
+          {val.prefName}
+        </div>
+      )
+    })
+  }
   render() {
-    console.log(this.state.prefectures[0])
     return (
-      <div>
-        <input
-          type="checkbox"
-        />
-        {/* {this.state.prefecture[0].prefName} */}
-      </div>
+      <p>
+        {this.renderItems()}
+      </p>
     )
   }
 }
