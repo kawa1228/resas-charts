@@ -16,6 +16,7 @@
     "css-loader": "^1.0.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "highcharts-react": "^0.0.3",
+    "highcharts-react-official": "^1.4.0",
     "html-webpack-plugin": "^3.2.0",
     "style-loader": "^0.23.0",
     "webpack": "^4.17.2",

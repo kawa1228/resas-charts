@@ -1,7 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import { apiKey } from '../../myApiKey'
-// import heighcharts from 'highcharts-react'
+import Highcharts from 'highcharts'
+import HighchartsReact from 'highcharts-react-official'
 
 class App extends React.Component {
   constructor() {
@@ -39,11 +40,33 @@ class App extends React.Component {
       )
     })
   }
+  introduceChart() {
+    const options = {
+      title: {
+        text: 'My chart'
+      },
+      series: [{
+        data: [1, 2, 3]
+      }]
+    }
+
+    const App = () => <div>
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={options}
+      />
+    </div>
+
+    return App()
+  }
   render() {
     return (
-      <p>
-        {this.renderItems()}
-      </p>
+      <div>
+        <p>
+          {this.renderItems()}
+        </p>
+        {this.introduceChart()}
+      </div>
     )
   }
 }
