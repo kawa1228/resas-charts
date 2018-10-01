@@ -11,7 +11,7 @@ class App extends React.Component {
       prefectures: [],
       population: [],
       select: [],
-      flag: false
+      flag: Array(47).fill(false)
     }
     this.getRegionalData(11)
   }
@@ -39,9 +39,14 @@ class App extends React.Component {
   }
   handleClick(e) {
     let selectData = this.state.prefectures[e.target.value - 1]
+    console.log(`selectData：${selectData.prefCode}`)
+    // console.log(this.state.flag[selectData.prefCode - 1])
     this.setState({
-      select: this.state.select.concat(selectData)
+      flag: !this.state.flag[selectData.prefCode - 1]
     })
+  }
+  duplicateCheck() {
+    console.log(this.state.flag)
   }
   renderItems() {
     return this.state.prefectures.map(val => {
@@ -78,7 +83,7 @@ class App extends React.Component {
     return App()
   }
   render() {
-    console.log(this.state.select)
+    this.duplicateCheck()
     return (
       <div>
         <p>

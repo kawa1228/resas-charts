@@ -1,9 +1,12 @@
 # resas-charts
 
 React + RESAS API + Highcharts
+
+> RESAS API：https://opendata.resas-portal.go.jp/
+
+>highcharts-react：https://github.com/highcharts/highcharts-react
+
 ```
 $ yarn install
 $ yarn run dev
 ```
->The official Highcharts supported wrapper for React
->https://github.com/highcharts/highcharts-react
