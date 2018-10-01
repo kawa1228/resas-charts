@@ -44,9 +44,18 @@ class App extends React.Component {
     this.setState({
       flag: this.state.flag
     })
+    this.selectSeries()
   }
-  duplicateCheck() {
-    console.log(this.state.flag)
+  selectSeries() {
+    let prefAry = []
+    for (let i = 0; i < this.state.flag.length; i++) {
+      if (this.state.flag[i]) {
+        prefAry.push(this.state.prefectures[i])
+      }
+    }
+    this.setState({
+      select: prefAry
+    })
   }
   renderItems() {
     return this.state.prefectures.map(val => {
@@ -83,7 +92,7 @@ class App extends React.Component {
     return App()
   }
   render() {
-    this.duplicateCheck()
+    console.log(this.state.select)
     return (
       <div>
         <p>
