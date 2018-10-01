@@ -38,11 +38,11 @@ class App extends React.Component {
       })
   }
   handleClick(e) {
-    let selectData = this.state.prefectures[e.target.value - 1]
-    console.log(`selectData：${selectData.prefCode}`)
-    // console.log(this.state.flag[selectData.prefCode - 1])
+    let index = this.state.prefectures[e.target.value - 1].prefCode
+
+    this.state.flag[index - 1] = !this.state.flag[index - 1]
     this.setState({
-      flag: !this.state.flag[selectData.prefCode - 1]
+      flag: this.state.flag
     })
   }
   duplicateCheck() {
