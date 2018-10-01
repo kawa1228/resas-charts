@@ -13,7 +13,6 @@ class App extends React.Component {
       select: [],
       flag: Array(47).fill(false)
     }
-    this.getRegionalData(11)
   }
   componentDidMount() {
     axios.get('https://opendata.resas-portal.go.jp/api/v1/prefectures',
@@ -47,14 +46,19 @@ class App extends React.Component {
     this.selectSeries()
   }
   selectSeries() {
-    let prefAry = []
+    let temp = []
     for (let i = 0; i < this.state.flag.length; i++) {
       if (this.state.flag[i]) {
-        prefAry.push(this.state.prefectures[i])
+        this.getRegionalData(i + 1)
+        temp = {
+          id: i + 1,
+          name: this.state.prefectures[i].prefName,
+          data: this.state.population
+        }
       }
     }
     this.setState({
-      select: prefAry
+      select: temp
     })
   }
   renderItems() {
@@ -92,7 +96,8 @@ class App extends React.Component {
     return App()
   }
   render() {
-    console.log(this.state.select)
+    console.log(this.state)
+    // console.log(this.state.population)
     return (
       <div>
         <p>
