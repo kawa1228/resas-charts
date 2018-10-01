@@ -10,11 +10,12 @@ class App extends React.Component {
     this.state = {
       prefectures: [],
       population: [],
+      select: [],
       flag: false
     }
     this.getRegionalData(11)
   }
-  componentWillMount() {
+  componentDidMount() {
     axios.get('https://opendata.resas-portal.go.jp/api/v1/prefectures',
       { headers: { 'X-API-KEY': apiKey } })
       .then(res => {
@@ -36,13 +37,23 @@ class App extends React.Component {
         })
       })
   }
+  handleClick(e) {
+    let selectData = this.state.prefectures[e.target.value - 1]
+    this.setState({
+      select: this.state.select.concat(selectData)
+    })
+  }
   renderItems() {
     return this.state.prefectures.map(val => {
       return (
-        <div>
-          <input type="checkbox" />
+        <label>
+          <input
+            type="checkbox"
+            value={val.prefCode}
+            onClick={(e) => this.handleClick(e)}
+          />
           {val.prefName}
-        </div>
+        </label>
       )
     })
   }
@@ -67,6 +78,7 @@ class App extends React.Component {
     return App()
   }
   render() {
+    console.log(this.state.select)
     return (
       <div>
         <p>
