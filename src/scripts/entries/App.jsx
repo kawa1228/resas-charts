@@ -24,16 +24,17 @@ class App extends React.Component {
       })
   }
   getRegionalData(index) {
-    axios.get(`https://opendata.resas-portal.go.jp/api/v1/population/sum/perYear?cityCode=-&prefCode=${index}`,
+    return axios.get(`https://opendata.resas-portal.go.jp/api/v1/population/sum/perYear?cityCode=-&prefCode=${index}`,
       { headers: { 'X-API-KEY': apiKey } })
       .then(res => {
         let populations = []
         res.data.result.line.data.map(val => {
           populations.push(val.value)
         })
-        this.setState({
-          population: populations
-        })
+        return populations
+        // this.setState({
+        //   population: populations
+        // })
       })
   }
   handleClick(e) {
@@ -46,20 +47,24 @@ class App extends React.Component {
     this.selectSeries()
   }
   selectSeries() {
-    let temp = []
+    let obj = {}
     for (let i = 0; i < this.state.flag.length; i++) {
       if (this.state.flag[i]) {
-        this.getRegionalData(i + 1)
-        temp = {
+        obj = {
           id: i + 1,
-          name: this.state.prefectures[i].prefName,
-          data: this.state.population
+          name: this.state.prefectures[i].prefName
         }
       }
     }
-    this.setState({
-      select: temp
+    this.getRegionalData(obj.id).then((res) => {
+      console.log(res)
+      console.log(obj)
+      obj.data = res
     })
+    console.log(obj)
+    // this.setState({
+    //   select: obj
+    // })
   }
   renderItems() {
     return this.state.prefectures.map(val => {
@@ -96,8 +101,6 @@ class App extends React.Component {
     return App()
   }
   render() {
-    console.log(this.state)
-    // console.log(this.state.population)
     return (
       <div>
         <p>
