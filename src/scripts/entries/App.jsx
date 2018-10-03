@@ -41,7 +41,9 @@ class App extends React.Component {
   renderItems() {
     return this.state.prefectures.map(val => {
       return (
-        <label>
+        <label
+          style={{ margin: '5px', display: 'inline-block' }}
+        >
           <input
             type="checkbox"
             value={val.prefCode}
@@ -64,6 +66,7 @@ class App extends React.Component {
       },
       plotOptions: {
         series: {
+          pointInterval: 5,
           pointStart: 1965
         }
       },
@@ -87,9 +90,10 @@ class App extends React.Component {
         value.push(val.value)
       })
 
+      let name = this.state.prefectures[num - 1].prefName
       let obj = {}
       obj = {
-        name: this.state.prefectures[num - 1].prefName,
+        name: name,
         data: value
       }
       this.setState({
