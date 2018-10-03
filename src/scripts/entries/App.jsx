@@ -52,15 +52,22 @@ class App extends React.Component {
       )
     })
   }
-  introduceChart() {
+  makeChart() {
     const options = {
       title: {
         text: '都道府県別人口構成'
       },
-      series: [{
-        data: this.state.select,
-        pointStart: 1965,
-      }]
+      yAxis: {
+        title: {
+          text: '人口数'
+        }
+      },
+      plotOptions: {
+        series: {
+          pointStart: 1965
+        }
+      },
+      series: this.state.select
     }
 
     const App = () => <div>
@@ -75,11 +82,15 @@ class App extends React.Component {
   setSelect(num) {
     this.getRegionalData(num).then(res => {
 
+      let value = []
+      res.result.line.data.map(val => {
+        value.push(val.value)
+      })
+
       let obj = {}
       obj = {
-        id: num,
         name: this.state.prefectures[num - 1].prefName,
-        data: res.result.line.data
+        data: value
       }
       this.setState({
         select: this.state.select.concat(obj)
@@ -87,13 +98,12 @@ class App extends React.Component {
     })
   }
   render() {
-    console.log(this.state)
     return (
       <div>
         <p>
           {this.renderItems()}
         </p>
-        {this.introduceChart()}
+        {this.makeChart()}
       </div>
     )
   }
