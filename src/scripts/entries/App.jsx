@@ -90,15 +90,28 @@ class App extends React.Component {
         value.push(val.value)
       })
 
-      let name = this.state.prefectures[num - 1].prefName
-      let obj = {}
-      obj = {
-        name: name,
-        data: value
+      let index = num - 1
+      let name = this.state.prefectures[index].prefName
+
+      // チェックしたらstate.selectに詰める
+      if (this.state.flag[index]) {
+        let obj = {}
+        obj = {
+          name: name,
+          data: value
+        }
+        this.setState({ select: this.state.select.concat(obj) })
+      } else {
+        // チェックを外したらstate.selectから削除
+        let obj = this.state.select
+
+        for (let i = 0; i < obj.length; i++) {
+          if (obj[i].name === name) {
+            obj.splice(i, 1)
+          }
+        }
+        this.setState({ select: obj })
       }
-      this.setState({
-        select: this.state.select.concat(obj)
-      })
     })
   }
   render() {
