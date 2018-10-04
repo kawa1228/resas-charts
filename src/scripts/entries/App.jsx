@@ -38,50 +38,6 @@ class App extends React.Component {
     })
     this.setSelect(index)
   }
-  renderItems() {
-    return this.state.prefectures.map(val => {
-      return (
-        <label
-          style={{ margin: '5px', display: 'inline-block' }}
-        >
-          <input
-            type="checkbox"
-            value={val.prefCode}
-            onClick={(e) => this.handleClick(e)}
-          />
-          {val.prefName}
-        </label>
-      )
-    })
-  }
-  makeChart() {
-    const options = {
-      title: {
-        text: '都道府県別人口構成'
-      },
-      yAxis: {
-        title: {
-          text: '人口数'
-        }
-      },
-      plotOptions: {
-        series: {
-          pointInterval: 5,
-          pointStart: 1965
-        }
-      },
-      series: this.state.select
-    }
-
-    const App = () => <div>
-      <HighchartsReact
-        highcharts={Highcharts}
-        options={options}
-      />
-    </div>
-
-    return App()
-  }
   setSelect(num) {
     this.getRegionalData(num).then(res => {
 
@@ -112,6 +68,50 @@ class App extends React.Component {
         }
         this.setState({ select: obj })
       }
+    })
+  }
+  makeChart() {
+    const options = {
+      title: {
+        text: '都道府県別人口構成'
+      },
+      yAxis: {
+        title: {
+          text: '人口数'
+        }
+      },
+      plotOptions: {
+        series: {
+          pointInterval: 5,
+          pointStart: 1965
+        }
+      },
+      series: this.state.select
+    }
+
+    const App = () => <div>
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={options}
+      />
+    </div>
+
+    return App()
+  }
+  renderItems() {
+    return this.state.prefectures.map(val => {
+      return (
+        <label
+          style={{ margin: '5px', display: 'inline-block' }}
+        >
+          <input
+            type="checkbox"
+            value={val.prefCode}
+            onClick={(e) => this.handleClick(e)}
+          />
+          {val.prefName}
+        </label>
+      )
     })
   }
   render() {
