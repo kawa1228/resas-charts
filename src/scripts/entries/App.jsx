@@ -28,11 +28,11 @@ class App extends React.Component {
     return axios.get(`https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?cityCode=-&prefCode=${index}`,
       { headers: { 'X-API-KEY': apiKey } })
       .then(res => {
-        console.log(res.data)
         return res.data
       })
   }
   handleClick(e) {
+    // チェック判定
     let index = e.target.value
 
     this.state.flag[index - 1] = !this.state.flag[index - 1]
