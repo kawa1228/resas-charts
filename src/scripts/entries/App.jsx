@@ -14,6 +14,7 @@ class App extends React.Component {
     }
   }
   componentDidMount() {
+    // 都道府県一覧取得
     axios.get('https://opendata.resas-portal.go.jp/api/v1/prefectures',
       { headers: { 'X-API-KEY': apiKey } })
       .then(res => {
@@ -23,9 +24,11 @@ class App extends React.Component {
       })
   }
   getRegionalData(index) {
-    return axios.get(`https://opendata.resas-portal.go.jp/api/v1/population/sum/perYear?cityCode=-&prefCode=${index}`,
+    // 県の人口構成を取得
+    return axios.get(`https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?cityCode=-&prefCode=${index}`,
       { headers: { 'X-API-KEY': apiKey } })
       .then(res => {
+        console.log(res.data)
         return res.data
       })
   }
@@ -42,7 +45,7 @@ class App extends React.Component {
     this.getRegionalData(num).then(res => {
 
       let value = []
-      res.result.line.data.map(val => {
+      res.result.data[0].data.map(val => {
         value.push(val.value)
       })
 
@@ -83,7 +86,7 @@ class App extends React.Component {
       plotOptions: {
         series: {
           pointInterval: 5,
-          pointStart: 1965
+          pointStart: 1960
         }
       },
       series: this.state.select
