@@ -80,8 +80,13 @@ class App extends React.Component {
       },
       yAxis: {
         title: {
-          text: '人口数'
+          text: '人口数 (人)'
         }
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
       },
       plotOptions: {
         series: {
