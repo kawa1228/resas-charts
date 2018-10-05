@@ -1,8 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 import { apiKey } from '../../myApiKey'
-import Highcharts from 'highcharts'
-import HighchartsReact from 'highcharts-react-official'
 import Chart from './Chart.jsx'
 
 class App extends React.Component {
@@ -74,52 +72,6 @@ class App extends React.Component {
       }
     })
   }
-  makeChart() {
-    Highcharts.setOptions({
-      lang: {
-        thousandsSep: ','
-      }
-    })
-    const options = {
-      title: {
-        text: '都道府県別人口構成'
-      },
-      yAxis: {
-        title: {
-          text: '人口数'
-        }
-      },
-      xAxis: {
-        title: {
-          text: '年'
-        }
-      },
-      legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle'
-      },
-      tooltip: {
-        pointFormat: "{point.y:,f} 人"
-      },
-      plotOptions: {
-        series: {
-          pointInterval: 5,
-          pointStart: 1960
-        }
-      },
-      series: this.state.select
-    }
-
-    const App = () => <div>
-      <HighchartsReact
-        highcharts={Highcharts}
-        options={options}
-      />
-    </div>
-
-    return App()
-  }
   renderItems() {
     return this.state.prefectures.map(val => {
       return (
@@ -142,7 +94,6 @@ class App extends React.Component {
         <p>
           {this.renderItems()}
         </p>
-        {this.makeChart()}
         <Chart data={this.state.select} />
       </div>
     )
