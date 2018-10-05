@@ -22,7 +22,7 @@ class App extends React.Component {
         })
       })
   }
-  getRegionalData(index) {
+  getPopulationData(index) {
     // 県の人口構成を取得
     return axios.get(`https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?cityCode=-&prefCode=${index}`,
       { headers: { 'X-API-KEY': apiKey } })
@@ -41,7 +41,7 @@ class App extends React.Component {
     this.setSelect(index)
   }
   setSelect(num) {
-    this.getRegionalData(num).then(res => {
+    this.getPopulationData(num).then(res => {
 
       let value = []
       res.result.data[0].data.map(val => {
