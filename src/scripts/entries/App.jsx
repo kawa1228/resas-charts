@@ -74,19 +74,32 @@ class App extends React.Component {
     })
   }
   makeChart() {
+    Highcharts.setOptions({
+      lang: {
+        thousandsSep: ','
+      }
+    })
     const options = {
       title: {
         text: '都道府県別人口構成'
       },
       yAxis: {
         title: {
-          text: '人口数 (人)'
+          text: '人口数'
+        }
+      },
+      xAxis: {
+        title: {
+          text: '年'
         }
       },
       legend: {
         layout: 'vertical',
         align: 'right',
         verticalAlign: 'middle'
+      },
+      tooltip: {
+        pointFormat: "{point.y:,f} 人"
       },
       plotOptions: {
         series: {
