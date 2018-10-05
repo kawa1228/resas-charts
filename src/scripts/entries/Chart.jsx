@@ -1,12 +1,13 @@
 import React from 'react'
 
 class Chart extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         console.log('hello')
     }
     render() {
-        return <div>hello</div>
+        console.log(this.props.data)
+        return <div>{'hello'}</div>
     }
 }
 

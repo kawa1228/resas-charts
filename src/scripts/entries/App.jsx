@@ -3,6 +3,7 @@ import axios from 'axios'
 import { apiKey } from '../../myApiKey'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
+import Chart from './Chart.jsx'
 
 class App extends React.Component {
   constructor() {
@@ -142,6 +143,7 @@ class App extends React.Component {
           {this.renderItems()}
         </p>
         {this.makeChart()}
+        <Chart data={this.state.select} />
       </div>
     )
   }
