@@ -8,11 +8,16 @@ class App extends React.Component {
     super()
     this.state = {
       prefectures: [],
-      select: [],
-      flag: Array(47).fill(false)
+      chartData: [],
+      checkedPref: Array(47).fill(false)
     }
   }
+
   componentDidMount() {
+    this.getPrefectures()
+  }
+
+  getPrefectures() {
     // 都道府県一覧取得
     axios.get('https://opendata.resas-portal.go.jp/api/v1/prefectures',
       { headers: { 'X-API-KEY': apiKey } })
@@ -22,6 +27,7 @@ class App extends React.Component {
         })
       })
   }
+
   getPopulationData(index) {
     // 県の人口構成を取得
     return axios.get(`https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?cityCode=-&prefCode=${index}`,
@@ -30,48 +36,51 @@ class App extends React.Component {
         return res.data
       })
   }
+
   handleClick(e) {
     // チェック判定
     let index = e.target.value
 
-    this.state.flag[index - 1] = !this.state.flag[index - 1]
+    this.state.checkedPref[index - 1] = !this.state.checkedPref[index - 1]
     this.setState({
-      flag: this.state.flag
+      checkedPref: this.state.checkedPref
     })
-    this.setSelect(index)
+    this.setChartData(index)
   }
-  setSelect(num) {
-    this.getPopulationData(num).then(res => {
+
+  setChartData(prefId) {
+    this.getPopulationData(prefId).then(res => {
 
       let value = []
       res.result.data[0].data.map(val => {
         value.push(val.value)
       })
 
-      let index = num - 1
+      let index = prefId - 1
       let name = this.state.prefectures[index].prefName
 
-      // チェックしたらstate.selectに詰める
-      if (this.state.flag[index]) {
+      // チェックしたらstate.chartDataに詰める
+      if (this.state.checkedPref[index]) {
         let obj = {}
         obj = {
           name: name,
           data: value
         }
-        this.setState({ select: this.state.select.concat(obj) })
+        this.setState({ chartData: this.state.chartData.concat(obj) })
       } else {
-        // チェックを外したらstate.selectから削除
-        let obj = this.state.select
+        // チェックを外したらstate.chartDataから削除
+        let obj = this.state.chartData
 
         for (let i = 0; i < obj.length; i++) {
           if (obj[i].name === name) {
             obj.splice(i, 1)
           }
         }
-        this.setState({ select: obj })
+        this.setState({ chartData: obj })
       }
     })
   }
+
   renderItems() {
     return this.state.prefectures.map(val => {
       return (
@@ -88,13 +97,14 @@ class App extends React.Component {
       )
     })
   }
+
   render() {
     return (
       <div>
         <p>
           {this.renderItems()}
         </p>
-        <Chart data={this.state.select} />
+        <Chart data={this.state.chartData} />
       </div>
     )
   }
