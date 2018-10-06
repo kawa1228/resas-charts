@@ -1,8 +1,9 @@
 import React from 'react'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
+import * as R from 'ramda'
 
-class Chart extends React.Component {
+export default class Chart extends React.Component {
 	constructor(props) {
 		super(props)
 	}
@@ -12,6 +13,7 @@ class Chart extends React.Component {
 				thousandsSep: ','
 			}
 		})
+
 		const options = {
 			title: {
 				text: '都道府県別人口構成'
@@ -40,7 +42,7 @@ class Chart extends React.Component {
 					pointStart: 1960
 				}
 			},
-			series: this.props.data
+			series: this.getSeries()
 		}
 
 		const App = () => <div>
@@ -52,9 +54,24 @@ class Chart extends React.Component {
 
 		return App()
 	}
+
+	getSeries() {
+		if (this.props.data.length === 0) {
+			return null
+		}
+
+		let series = []
+		this.props.data.forEach(v => {
+			const ser = {
+				name: v.name,
+				data: R.pluck('value', v.data)
+			}
+			series.push(ser)
+		})
+		return series
+	}
+
 	render() {
 		return <div>{this.makeChart()}</div>
 	}
 }
-
-export default Chart

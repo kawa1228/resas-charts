@@ -51,11 +51,6 @@ class App extends React.Component {
   setChartData(prefId) {
     this.getPopulationData(prefId).then(res => {
 
-      let value = []
-      res.result.data[0].data.map(val => {
-        value.push(val.value)
-      })
-
       let index = prefId - 1
       let name = this.state.prefectures[index].prefName
 
@@ -64,7 +59,7 @@ class App extends React.Component {
         let obj = {}
         obj = {
           name: name,
-          data: value
+          data: res.result.data[0].data
         }
         this.setState({ chartData: this.state.chartData.concat(obj) })
       } else {
