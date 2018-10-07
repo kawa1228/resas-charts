@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const box = (props) => {
+export const Checkbox = (props) => {
   return props.data.map(val => {
     return (
       <label

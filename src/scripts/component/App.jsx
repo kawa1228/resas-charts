@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { apiKey } from '../../myApiKey'
 import Chart from './Chart.jsx'
-import * as Checkbox from './Checkbox.jsx'
+import { Checkbox } from './Checkbox.jsx'
 
 class App extends React.Component {
   constructor() {
@@ -81,11 +81,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Checkbox.box
+        <Checkbox
           data={this.state.prefectures}
           handleClick={(e) => this.clickCheckbox(e)}
         />
-        < Chart data={this.state.chartData} />
+        <Chart data={this.state.chartData} />
       </div>
     )
   }
