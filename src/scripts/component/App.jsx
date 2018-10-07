@@ -81,10 +81,12 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Checkbox
-          data={this.state.prefectures}
-          handleClick={(e) => this.clickCheckbox(e)}
-        />
+        <p>
+          <Checkbox
+            data={this.state.prefectures}
+            handleClick={(e) => this.clickCheckbox(e)}
+          />
+        </p>
         <Chart data={this.state.chartData} />
       </div>
     )

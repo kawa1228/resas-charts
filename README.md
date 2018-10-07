@@ -1,10 +1,15 @@
 # resas-charts
+都道府県別の総人口推移グラフ
 
-React + RESAS API + Highcharts
+# Dependency
 
-> RESAS API：https://opendata.resas-portal.go.jp/
+React：v16.5.2
 
->highcharts-react：https://github.com/highcharts/highcharts-react
+RESAS API：https://opendata.resas-portal.go.jp/
+
+highcharts-react：https://github.com/highcharts/highcharts-react
+
+# Setup
 
 ```
 $ yarn install
