@@ -1,11 +1,18 @@
 import React from 'react'
 
-export const Checkbox = (props) => {
-  console.log(props.data)
-  return (
-    <div>
-      hoge
-    </div>
-  )
+export const box = (props) => {
+  return props.data.map(val => {
+    return (
+      <label
+        style={{ margin: '5px', display: 'inline-block' }}
+      >
+        <input
+          type="checkbox"
+          value={val.prefCode}
+          onClick={props.handleClick}
+        />
+        {val.prefName}
+      </label>
+    )
+  })
 }
-
