@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { apiKey } from '../../myApiKey'
 import Chart from './Chart.jsx'
+import { Checkbox } from './Checkbox.jsx'
 
 class App extends React.Component {
   constructor() {
@@ -99,6 +100,7 @@ class App extends React.Component {
         <p>
           {this.renderItems()}
         </p>
+        <Checkbox data={this.state} />
         <Chart data={this.state.chartData} />
       </div>
     )
