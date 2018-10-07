@@ -38,7 +38,7 @@ class App extends React.Component {
       })
   }
 
-  handleClick(e) {
+  clickCheckbox(e) {
     // チェック判定
     let index = e.target.value
     let flag = this.state.checkedPref
@@ -78,36 +78,12 @@ class App extends React.Component {
     })
   }
 
-  renderItems() {
-    return this.state.prefectures.map(val => {
-      return (
-        <label
-          style={{ margin: '5px', display: 'inline-block' }}
-        >
-          <input
-            type="checkbox"
-            value={val.prefCode}
-            onClick={(e) => this.handleClick(e)}
-          />
-          {val.prefName}
-        </label>
-      )
-    })
-  }
-
-  clickCheckbox() {
-    console.log('this.handleClick()をここにかく')
-  }
-
   render() {
     return (
       <div>
-        <p>
-          {this.renderItems()}
-        </p>
         <Checkbox.box
           data={this.state.prefectures}
-          handleClick={() => this.clickCheckbox()}
+          handleClick={(e) => this.clickCheckbox(e)}
         />
         < Chart data={this.state.chartData} />
       </div>
