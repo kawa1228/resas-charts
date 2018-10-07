@@ -41,10 +41,11 @@ class App extends React.Component {
   handleClick(e) {
     // チェック判定
     let index = e.target.value
+    let flag = this.state.checkedPref
 
-    this.state.checkedPref[index - 1] = !this.state.checkedPref[index - 1]
+    flag[index - 1] = !flag[index - 1]
     this.setState({
-      checkedPref: this.state.checkedPref
+      checkedPref: flag
     })
     this.setChartData(index)
   }
@@ -100,7 +101,7 @@ class App extends React.Component {
         <p>
           {this.renderItems()}
         </p>
-        <Checkbox data={this.state} />
+        <Checkbox data={this.state.prefectures} />
         <Chart data={this.state.chartData} />
       </div>
     )
