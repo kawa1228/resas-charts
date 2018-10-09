@@ -1,11 +1,9 @@
-import React from 'react'
+import React from "react";
 
-export const Checkbox = (props) => {
+export const Checkbox = props => {
   return props.data.map(val => {
     return (
-      <label
-        style={{ margin: '5px', display: 'inline-block' }}
-      >
+      <label style={{ margin: "5px", display: "inline-block" }}>
         <input
           type="checkbox"
           value={val.prefCode}
@@ -13,6 +11,6 @@ export const Checkbox = (props) => {
         />
         {val.prefName}
       </label>
-    )
-  })
-}
+    );
+  });
+};
