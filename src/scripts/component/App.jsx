@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { apiKey } from "../../myApiKey";
-import Chart from "./Chart.jsx";
 import { Checkbox } from "./Checkbox.jsx";
+import { CreateChart } from "./Chart.jsx";
 
 class App extends React.Component {
   constructor() {
@@ -91,7 +91,7 @@ class App extends React.Component {
             handleClick={e => this.clickCheckbox(e)}
           />
         </p>
-        <Chart data={this.state.chartData} />
+        <CreateChart data={this.state.chartData} />
       </div>
     );
   }
