@@ -1,6 +1,6 @@
 # resas-charts
 
-<img width="500" alt="demo" src="https://user-images.githubusercontent.com/36784748/46788105-73f2ea00-cd74-11e8-8bc6-16ddcb60a923.png">
+<img width="600" alt="demo" src="https://user-images.githubusercontent.com/36784748/46788105-73f2ea00-cd74-11e8-8bc6-16ddcb60a923.png">
 
 ## 都道府県別人口構成グラフ
 
@@ -28,9 +28,9 @@
 
 React：v16.5.2
 
-RESAS API：https://opendata.resas・portal.go.jp/
+RESAS API：https://opendata.resas-portal.go.jp/
 
-highcharts・react：https://github.com/highcharts/highcharts・react
+highcharts・react：https://github.com/highcharts/highcharts-react
 
 ## Setup
 
