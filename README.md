@@ -30,7 +30,7 @@ React：v16.5.2
 
 RESAS API：https://opendata.resas-portal.go.jp/
 
-highcharts・react：https://github.com/highcharts/highcharts-react
+highcharts-react：https://github.com/highcharts/highcharts-react
 
 ## Setup
 
