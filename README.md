@@ -1,5 +1,7 @@
 # resas-charts
 
+<img width="500" alt="demo" src="https://user-images.githubusercontent.com/36784748/46788105-73f2ea00-cd74-11e8-8bc6-16ddcb60a923.png">
+
 ## 都道府県別人口構成グラフ
 
 ```
