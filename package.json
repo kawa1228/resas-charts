@@ -14,6 +14,7 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "css-loader": "^1.0.0",
+    "dotenv": "^6.1.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "highcharts-react": "^0.0.3",
     "highcharts-react-official": "^1.4.0",

@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import { apiKey } from "../../myApiKey";
 import { Checkbox } from "./Checkbox.jsx";
 import { CreateChart } from "./Chart.jsx";
 
@@ -20,24 +19,17 @@ class App extends React.Component {
 
   getPrefectures() {
     // 都道府県一覧取得
-    axios
-      .get("https://opendata.resas-portal.go.jp/api/v1/prefectures", {
-        headers: { "X-API-KEY": apiKey }
-      })
-      .then(res => {
-        this.setState({
-          prefectures: res.data.result
-        });
+    axios.get("http://localhost:8000/prefectures.php?").then(res => {
+      this.setState({
+        prefectures: res.data.result
       });
+    });
   }
 
   getPopulationData(index) {
     // 県の人口構成を取得
     return axios
-      .get(
-        `https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?cityCode=-&prefCode=${index}`,
-        { headers: { "X-API-KEY": apiKey } }
-      )
+      .get(`http://localhost:8000/populationComposition.php?prefId=${index}`)
       .then(res => {
         return res.data;
       });
